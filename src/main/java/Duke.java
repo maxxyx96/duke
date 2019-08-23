@@ -1,10 +1,12 @@
-import java.util.Scanner; //For Input
+import java.util.*; //For Input
 
 public class Duke {
     public static void main(String[] args) {
 
+        //input thing
+        Scanner newInput = new Scanner(System.in);
         //TYPE EVERYTHING IN HERE >:( 
-        
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -17,14 +19,14 @@ public class Duke {
         System.out.println("What can i do for you?");
 
         //Scanning for input
-        String userText = "null";
-        while (!userText.equals("bye")) {
-            Scanner newInput = new Scanner(System.in);
-            System.out.println();
+        String userText = "";
 
-            userText = newInput.next();
+        while (!userText.equals("bye")) {
+            userText = newInput.nextLine(); //Should read next line for sentences
             System.out.println(userText);
         }
+
+
 
         //Bye
         System.out.println("Bye. Hope to see you again soon!");
@@ -32,4 +34,3 @@ public class Duke {
     }
     
 }
-

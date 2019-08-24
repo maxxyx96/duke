@@ -53,9 +53,19 @@ public class Duke {
                 case "event":
                     //Replace "event " with "" to get actual event
                     inputTask = userText.replaceFirst("event ", "");
+
+                    //Error Handling
+                    if (inputTask.equals("") || inputTask.equals("event")) {
+                        System.out.println("☹ OOPS!!! The description of an event cannot be empty.");
+                        break;
+                    }
+                    if (inputTask.indexOf("/at") == -1) {
+                        System.out.println("☹ OOPS!!! The event must be specified with /at <date and time>!");
+                        break;
+                    }
+
+                    //get the details before and after /at
                     splitTask = inputTask.split("/at", 2);
-                    System.out.println(splitTask[0] + splitTask[1]);
-                    //Create new to do
                     Task inputEvent = new Event(splitTask[0], splitTask[1]);
                     taskList.add(inputEvent);
                     System.out.println("Got it. I've added this task: \n" + inputEvent);
@@ -65,10 +75,18 @@ public class Duke {
                 case "deadline":
                     //Replace "deadline " with "" to get actual deadline
                     inputTask = userText.replaceFirst("deadline ", "");
-                    //Split the string where the nasty "/" is
+                    //Error handling
+                    if (inputTask.equals("") || inputTask.equals("deadline")) {
+                        System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+                        break;
+                    }
+                    if (inputTask.indexOf("/by") == -1) {
+                        System.out.println("☹ OOPS!!! The due date must be specified with /by <due date>!");
+                        break;
+                    }
+
+                    //get the details before and after /by
                     splitTask = inputTask.split("/by", 2);
-                    System.out.println(splitTask[0] + splitTask[1]);
-                    //Create new to do
                     Task inputDeadline = new Deadline(splitTask[0], splitTask[1]);
                     taskList.add(inputDeadline);
                     System.out.println("Got it. I've added this task: \n" + inputDeadline);
@@ -78,6 +96,12 @@ public class Duke {
                 case "todo":
                     //Replace "to do " with "" to get actual to do
                     inputTask = userText.replaceFirst("todo ", "");
+
+                    //Error handling
+                    if (inputTask.equals("") || inputTask.equals("todo")) {
+                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                        break;
+                    }
                     //Create new to do
                     Task inputTodo = new Todo(inputTask);
                     taskList.add(inputTodo);
@@ -89,7 +113,6 @@ public class Duke {
                 case "done":
                     //Kill off the word done. -1 to account for 0 based indexing
                     int completedIndex = -1 + Integer.parseInt(userText.replaceAll("[\\D]", ""));
-                    //System.out.println("Usertext is now : " + completedIndex);
                     //Stuff for done
                     Task markDone = taskList.get(completedIndex);
                     markDone.markAsDone();
@@ -98,7 +121,7 @@ public class Duke {
                     break;
 
                 default:
-                    System.out.println("YOU SHOULDNT BE HERE. WHY ARE YOU POPPING UP?");
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 
             }
 

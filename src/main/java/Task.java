@@ -8,8 +8,8 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "O" : "X"); //O tick X cross, cant see unicode :/
-        //return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        //return (isDone ? "O" : "X"); //O tick X cross, cant see unicode :/
+        return (isDone ? "✓" : "✗"); //return tick or X symbols
     }
 
     public void markAsDone() {

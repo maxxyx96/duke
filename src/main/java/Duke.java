@@ -20,10 +20,12 @@ public class Duke {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can i do for you?");
 
-        //Scanning for input
+        //Input declaration
         String userText = "";
+        String inputTask = "";
+        String[] splitTask;
 
-        //Adopting Switch Approach
+        //Input declaration
         userText = newInput.nextLine();
 
         //Get first keyword
@@ -40,11 +42,48 @@ public class Duke {
                         System.out.println("List currently has nothing");
                     }
                     else {
-                        for (Task i : taskList) {
-                            System.out.println(number + ".[" + i.getStatusIcon() + "] "+ i.description);
+                        for (Task currentTask : taskList) {
+                            System.out.print(number + ". ");
+                            System.out.println(currentTask);
                             number += 1;
                         }
                     }
+                    break;
+
+                case "event":
+                    //Replace "event " with "" to get actual event
+                    inputTask = userText.replaceFirst("event ", "");
+                    splitTask = inputTask.split("/at", 2);
+                    System.out.println(splitTask[0] + splitTask[1]);
+                    //Create new to do
+                    Task inputEvent = new Event(splitTask[0], splitTask[1]);
+                    taskList.add(inputEvent);
+                    System.out.println("Got it. I've added this task: \n" + inputEvent);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    break;
+
+                case "deadline":
+                    //Replace "deadline " with "" to get actual deadline
+                    inputTask = userText.replaceFirst("deadline ", "");
+                    //Split the string where the nasty "/" is
+                    splitTask = inputTask.split("/by", 2);
+                    System.out.println(splitTask[0] + splitTask[1]);
+                    //Create new to do
+                    Task inputDeadline = new Deadline(splitTask[0], splitTask[1]);
+                    taskList.add(inputDeadline);
+                    System.out.println("Got it. I've added this task: \n" + inputDeadline);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    break;
+
+                case "todo":
+                    //Replace "to do " with "" to get actual to do
+                    inputTask = userText.replaceFirst("todo ", "");
+                    //Create new to do
+                    Task inputTodo = new Todo(inputTask);
+                    taskList.add(inputTodo);
+                    //Notify user
+                    System.out.println("Got it. I've added this task: \n" + inputTodo);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
                     break;
 
                 case "done":
@@ -55,13 +94,12 @@ public class Duke {
                     Task markDone = taskList.get(completedIndex);
                     markDone.markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println("[" + markDone.getStatusIcon() + "] "+ markDone.description);
+                    System.out.println(markDone);
                     break;
 
                 default:
-                    //Add to list
-                    taskList.add(new Task(userText));
-                    System.out.println("Task Added: " + userText);
+                    System.out.println("YOU SHOULDNT BE HERE. WHY ARE YOU POPPING UP?");
+
             }
 
             //Prepare for next input

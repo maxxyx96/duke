@@ -2,11 +2,12 @@ import java.util.*;
 import java.io.*;
 
 public class Duke {
+
     public static void main(String[] args) {
 
         //array of Tasks generation
         ArrayList<Task> taskList = new ArrayList<>();
-        Task.loadTask(taskList);
+        taskList = Data.loadTask(taskList);
         //Input device
         Scanner newInput = new Scanner(System.in);
 
@@ -72,7 +73,7 @@ public class Duke {
                     taskList.add(inputEvent);
                     System.out.println("Got it. I've added this task: \n" + inputEvent);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    Task.saveTask(inputEvent);
+                    Data.saveTask(taskList);
                     break;
 
                 case "deadline":
@@ -94,7 +95,7 @@ public class Duke {
                     taskList.add(inputDeadline);
                     System.out.println("Got it. I've added this task: \n" + inputDeadline);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    Task.saveTask(inputDeadline);
+                    Data.saveTask(taskList);
                     break;
 
                 case "todo":
@@ -112,7 +113,7 @@ public class Duke {
                     //Notify user
                     System.out.println("Got it. I've added this task: \n" + inputTodo);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    Task.saveTask(inputTodo);
+                    Data.saveTask(taskList);
                     break;
 
                 case "done":
@@ -123,7 +124,7 @@ public class Duke {
                     markDone.markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(markDone);
-                    Task.saveTask(markDone);
+                    Data.saveTask(taskList);
                     break;
 
                 default:

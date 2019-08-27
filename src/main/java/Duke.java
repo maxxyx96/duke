@@ -1,13 +1,15 @@
-import java.util.*; //For Input
+import java.util.*;
+import java.io.*;
 
 public class Duke {
     public static void main(String[] args) {
 
         //array of Tasks generation
         ArrayList<Task> taskList = new ArrayList<>();
-
+        Task.loadTask(taskList);
         //Input device
         Scanner newInput = new Scanner(System.in);
+
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -70,6 +72,7 @@ public class Duke {
                     taskList.add(inputEvent);
                     System.out.println("Got it. I've added this task: \n" + inputEvent);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    Task.saveTask(inputEvent);
                     break;
 
                 case "deadline":
@@ -91,6 +94,7 @@ public class Duke {
                     taskList.add(inputDeadline);
                     System.out.println("Got it. I've added this task: \n" + inputDeadline);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    Task.saveTask(inputDeadline);
                     break;
 
                 case "todo":
@@ -108,6 +112,7 @@ public class Duke {
                     //Notify user
                     System.out.println("Got it. I've added this task: \n" + inputTodo);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    Task.saveTask(inputTodo);
                     break;
 
                 case "done":
@@ -118,6 +123,7 @@ public class Duke {
                     markDone.markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(markDone);
+                    Task.saveTask(markDone);
                     break;
 
                 default:
@@ -135,5 +141,4 @@ public class Duke {
         //Bye
         System.out.println("Bye. Hope to see you again soon!");
     }
-    
 }

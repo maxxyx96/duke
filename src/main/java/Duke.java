@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.text.*;
 
 public class Duke {
 
@@ -11,6 +12,8 @@ public class Duke {
         //Input device
         Scanner newInput = new Scanner(System.in);
 
+        //Tool to recognise date from string
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy HHmm");
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -90,12 +93,21 @@ public class Duke {
                     }
 
                     //get the details before and after /by
-                    splitTask = inputTask.split("/by", 2);
-                    Task inputDeadline = new Deadline(splitTask[0], splitTask[1]);
-                    taskList.add(inputDeadline);
-                    System.out.println("Got it. I've added this task: \n" + inputDeadline);
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    Data.saveTask(taskList);
+                    splitTask = inputTask.split(" /by ", 2);
+                    try {
+                        Date dueDate = dateFormat.parse(splitTask[1]);
+                        Task inputDeadline = new Deadline(splitTask[0], dueDate);
+                        taskList.add(inputDeadline);
+                        System.out.println("Got it. I've added this task: \n" + inputDeadline);
+                        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                        Data.saveTask(taskList);
+                    }
+                    //If user dont put the date properly or horhhhh
+                    catch (ParseException e)
+                    {
+                        System.out.println("☹ Please format deadline with: DD/MM/YYYY HHMM, eg: 02/12/2019 1800");
+                    }
+
                     break;
 
                 case "todo":

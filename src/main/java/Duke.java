@@ -58,10 +58,10 @@ public class Duke {
 
                 case "event":
                     //Replace "event " with "" to get actual event
-                    inputTask = userText.replaceFirst("event ", "");
+                    inputTask = userText.replaceFirst("event", "");
 
                     //Error Handling
-                    if (inputTask.equals("") || inputTask.equals("event")) {
+                    if (inputTask.equals("")) {
                         System.out.println("☹ OOPS!!! The description of an event cannot be empty.");
                         break;
                     }
@@ -81,9 +81,9 @@ public class Duke {
 
                 case "deadline":
                     //Replace "deadline " with "" to get actual deadline
-                    inputTask = userText.replaceFirst("deadline ", "");
+                    inputTask = userText.replaceFirst("deadline", "");
                     //Error handling
-                    if (inputTask.equals("") || inputTask.equals("deadline")) {
+                    if (inputTask.equals("")) {
                         System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
                         break;
                     }
@@ -112,10 +112,10 @@ public class Duke {
 
                 case "todo":
                     //Replace "to do " with "" to get actual to do
-                    inputTask = userText.replaceFirst("todo ", "");
+                    inputTask = userText.replaceFirst("todo", "");
 
                     //Error handling
-                    if (inputTask.equals("") || inputTask.equals("todo")) {
+                    if (inputTask.equals("") || inputTask.equals(" ")) {
                         System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                         break;
                     }
@@ -147,6 +147,33 @@ public class Duke {
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
                     taskList.remove(deleteIndex);
                     Data.saveTask(taskList);
+                    break;
+                case "find":
+                    inputTask = userText.replaceFirst("find", "");
+                    System.out.println(inputTask);
+                    if (inputTask.equals("")) {
+                        System.out.println("☹ OOPS!!! You cant find an empty task!");
+                        break;
+                    }
+                    //Create a new arraylist for storing searches
+                    ArrayList<Task> searchList = new ArrayList<>();
+                    int searchNumber = 1;
+                    for (Task searchTask : taskList) {
+                        if (searchTask.description.contains(inputTask)) {
+                            //store it inside a new arraylist
+                            searchList.add(searchTask);
+                        }
+                    }
+                    if (searchList.size() == 0) {
+                        System.out.println("☹ OOPS!!! Nothing matches your search!");
+                        break;
+                    }
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (Task currentTask : searchList) {
+                        System.out.print(searchNumber + ". ");
+                        System.out.println(currentTask);
+                        searchNumber += 1;
+                    }
                     break;
 
                 default:

@@ -149,6 +149,34 @@ public class Duke {
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
                     break;
 
+                case "find":
+                    inputTask = userText.replaceFirst("find ", "");
+                    if (inputTask.equals("")) {
+                        System.out.println("☹ OOPS!!! You cant find an empty task!");
+                        break;
+                    }
+                    //Create a new arraylist for storing searches
+                    ArrayList<Task> searchList = new ArrayList<>();
+                    int searchNumber = 1;
+                    for (Task searchTask : taskList) {
+                        if (searchTask.description.contains(inputTask)) {
+                            //store it inside a new arraylist
+                            searchList.add(searchTask);
+                        }
+                    }
+                    if (searchList.size() == 0) {
+                        System.out.println("☹ OOPS!!! Nothing matches your search!");
+                        break;
+                    }
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (Task currentTask : searchList) {
+                        System.out.print(searchNumber + ". ");
+                        System.out.println(currentTask);
+                        searchNumber += 1;
+                    }
+
+                    break;
+
                 default:
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 

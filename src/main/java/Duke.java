@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.text.*;
 
 public class Duke {
 
@@ -11,6 +12,8 @@ public class Duke {
         //Input device
         Scanner newInput = new Scanner(System.in);
 
+        //Tool to recognise date from string
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy HHmm");
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -55,10 +58,10 @@ public class Duke {
 
                 case "event":
                     //Replace "event " with "" to get actual event
-                    inputTask = userText.replaceFirst("event", "");
+                    inputTask = userText.replaceFirst("event ", "");
 
                     //Error Handling
-                    if (inputTask.equals("")) {
+                    if (inputTask.equals("") || inputTask.equals("event")) {
                         System.out.println("☹ OOPS!!! The description of an event cannot be empty.");
                         break;
                     }
@@ -78,9 +81,9 @@ public class Duke {
 
                 case "deadline":
                     //Replace "deadline " with "" to get actual deadline
-                    inputTask = userText.replaceFirst("deadline", "");
+                    inputTask = userText.replaceFirst("deadline ", "");
                     //Error handling
-                    if (inputTask.equals("")) {
+                    if (inputTask.equals("") || inputTask.equals("deadline")) {
                         System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
                         break;
                     }
@@ -90,20 +93,29 @@ public class Duke {
                     }
 
                     //get the details before and after /by
-                    splitTask = inputTask.split("/by", 2);
-                    Task inputDeadline = new Deadline(splitTask[0], splitTask[1]);
-                    taskList.add(inputDeadline);
-                    System.out.println("Got it. I've added this task: \n" + inputDeadline);
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    Data.saveTask(taskList);
+                    splitTask = inputTask.split(" /by ", 2);
+                    try {
+                        Date dueDate = dateFormat.parse(splitTask[1]);
+                        Task inputDeadline = new Deadline(splitTask[0], dueDate);
+                        taskList.add(inputDeadline);
+                        System.out.println("Got it. I've added this task: \n" + inputDeadline);
+                        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                        Data.saveTask(taskList);
+                    }
+                    //If user dont put the date properly or horhhhh
+                    catch (ParseException e)
+                    {
+                        System.out.println("☹ Please format deadline with: DD/MM/YYYY HHMM, eg: 02/12/2019 1800");
+                    }
+
                     break;
 
                 case "todo":
                     //Replace "to do " with "" to get actual to do
-                    inputTask = userText.replaceFirst("todo", "");
+                    inputTask = userText.replaceFirst("todo ", "");
 
                     //Error handling
-                    if (inputTask.equals("") || inputTask.equals(" ")) {
+                    if (inputTask.equals("") || inputTask.equals("todo")) {
                         System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                         break;
                     }
@@ -125,43 +137,6 @@ public class Duke {
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(markDone);
                     Data.saveTask(taskList);
-                    break;
-
-                case "delete":
-                    //Kill off the word delete. -1 to account for 0 based indexing
-                    int deleteIndex = Integer.parseInt(userText.replaceAll("[\\D]", "")) - 1;
-                    Task markDelete = taskList.get(deleteIndex);
-                    System.out.println("Noted. I've removed this task: \n" + markDelete);
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    taskList.remove(deleteIndex);
-                    Data.saveTask(taskList);
-                    break;
-                case "find":
-                    inputTask = userText.replaceFirst("find", "");
-                    System.out.println(inputTask);
-                    if (inputTask.equals("")) {
-                        System.out.println("☹ OOPS!!! You cant find an empty task!");
-                        break;
-                    }
-                    //Create a new arraylist for storing searches
-                    ArrayList<Task> searchList = new ArrayList<>();
-                    int searchNumber = 1;
-                    for (Task searchTask : taskList) {
-                        if (searchTask.description.contains(inputTask)) {
-                            //store it inside a new arraylist
-                            searchList.add(searchTask);
-                        }
-                    }
-                    if (searchList.size() == 0) {
-                        System.out.println("☹ OOPS!!! Nothing matches your search!");
-                        break;
-                    }
-                    System.out.println("Here are the matching tasks in your list:");
-                    for (Task currentTask : searchList) {
-                        System.out.print(searchNumber + ". ");
-                        System.out.println(currentTask);
-                        searchNumber += 1;
-                    }
                     break;
 
                 default:

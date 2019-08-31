@@ -23,7 +23,7 @@ public class Task implements Serializable {
     //To include [X]/[TICK] whatever into the string
     @Override
     public String toString(){
-        return "[" + getStatusIcon() + "]" + this.description;
+        return "[" + getStatusIcon() + "] " + this.description;
     }
 
 }

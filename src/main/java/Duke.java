@@ -139,6 +139,16 @@ public class Duke {
                     Data.saveTask(taskList);
                     break;
 
+                case "delete":
+                    //Kill off the word delete. -1 to account for 0 based indexing
+                    int deleteIndex = Integer.parseInt(userText.replaceAll("[\\D]", "")) - 1;
+                    Task markDelete = taskList.get(deleteIndex);
+                    System.out.println("Noted. I've removed this task: \n" + markDelete);
+                    taskList.remove(deleteIndex);
+                    Data.saveTask(taskList);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    break;
+
                 default:
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 

@@ -1,5 +1,4 @@
 import java.util.*;
-import java.io.*;
 import java.text.*;
 
 public class Duke {
@@ -8,7 +7,7 @@ public class Duke {
 
         //array of Tasks generation
         ArrayList<Task> taskList = new ArrayList<>();
-        taskList = Data.loadTask(taskList);
+        taskList = Storage.loadTask(taskList);
         //Input device
         Scanner newInput = new Scanner(System.in);
 
@@ -76,7 +75,7 @@ public class Duke {
                     taskList.add(inputEvent);
                     System.out.println("Got it. I've added this task: \n" + inputEvent);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    Data.saveTask(taskList);
+                    Storage.saveTask(taskList);
                     break;
 
                 case "deadline":
@@ -100,7 +99,7 @@ public class Duke {
                         taskList.add(inputDeadline);
                         System.out.println("Got it. I've added this task: \n" + inputDeadline);
                         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                        Data.saveTask(taskList);
+                        Storage.saveTask(taskList);
                     }
                     //If user dont put the date properly or horhhhh
                     catch (ParseException e)
@@ -125,7 +124,7 @@ public class Duke {
                     //Notify user
                     System.out.println("Got it. I've added this task: \n" + inputTodo);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                    Data.saveTask(taskList);
+                    Storage.saveTask(taskList);
                     break;
 
                 case "done":
@@ -136,7 +135,7 @@ public class Duke {
                     markDone.markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(markDone);
-                    Data.saveTask(taskList);
+                    Storage.saveTask(taskList);
                     break;
 
                 case "delete":
@@ -146,7 +145,7 @@ public class Duke {
                     System.out.println("Noted. I've removed this task: \n" + markDelete);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
                     taskList.remove(deleteIndex);
-                    Data.saveTask(taskList);
+                    Storage.saveTask(taskList);
                     break;
                 case "find":
                     inputTask = userText.replaceFirst("find", "");

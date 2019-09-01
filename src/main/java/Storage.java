@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Data {
+public class Storage {
 
     //Task Loading
     public static ArrayList<Task> loadTask(ArrayList<Task> log) {

@@ -150,7 +150,6 @@ public class Duke {
                     break;
                 case "find":
                     inputTask = userText.replaceFirst("find", "");
-                    System.out.println(inputTask);
                     if (inputTask.equals("")) {
                         System.out.println("☹ OOPS!!! You cant find an empty task!");
                         break;

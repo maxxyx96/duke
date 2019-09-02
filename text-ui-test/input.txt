@@ -1,0 +1,12 @@
+todo deadline
+deadline event /by 01/01/2019 1010
+event todo /at singapore
+list
+delete 1
+delete 1
+find todo
+done 1
+list
+find todo
+delete 1
+bye

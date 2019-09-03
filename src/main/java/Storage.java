@@ -1,10 +1,12 @@
 import java.io.*;
 import java.util.*;
 
-public class Data {
+public class Storage {
+
+    protected static ArrayList<Task> log;
 
     //Task Loading
-    public static ArrayList<Task> loadTask(ArrayList<Task> log) {
+    public static ArrayList<Task> loadTask() {
         try {
             FileInputStream fileIS = new FileInputStream("./taskLog");
             ObjectInputStream objectIS = new ObjectInputStream(fileIS);
@@ -30,11 +32,11 @@ public class Data {
         return log;
     }
 
-    public static void saveTask(ArrayList<Task> taskList) {
+    public static void saveTask(ArrayList<Task> saveData) {
         try {
             FileOutputStream fileOS = new FileOutputStream("./taskLog");
             ObjectOutputStream objectOS = new ObjectOutputStream(fileOS);
-            objectOS.writeObject(taskList);
+            objectOS.writeObject(saveData);
             objectOS.close();
             fileOS.close();
             //System.out.println("Serialized data is saved in /taskLog");

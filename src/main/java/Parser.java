@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Parser {
@@ -18,9 +19,15 @@ public class Parser {
     }
 
     public String removeFirstWord() {
-        String[] tempStringList = this.command.split(" ", 2);
+            String[] tempStringList = this.command.split(" ", 2);
+            return tempStringList[1];
+    }
+
+    public String removeWord(String word) {
+        String[] tempStringList = this.command.split(word);
         return tempStringList[1];
     }
+
 
     public int getIndex() {
         return -1 + Integer.parseInt(this.command.replaceAll("[\\D]", ""));

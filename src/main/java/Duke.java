@@ -3,8 +3,9 @@ import java.text.*;
 
 public class Duke {
 
-    public static void main(String[] args) {
+    private Ui ui;
 
+    public void run() {
         //array of Tasks generation
         //ArrayList<Task> taskList = new ArrayList<>();
         TaskList taskList = new TaskList();
@@ -13,16 +14,8 @@ public class Duke {
         //Tool to recognise date from string
         SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy HHmm");
 
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
-        //Introduction
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can i do for you?");
+        ui = new Ui();
+        ui.dukeWelcome();
 
         //Input device
         Parser newInput = new Parser();
@@ -169,7 +162,10 @@ public class Duke {
             userCommand = newInput.userCommand();
         }
 
-        //Bye
-        System.out.println("Bye. Hope to see you again soon!");
+        ui.dukeGoodbye();
+    }
+
+    public static void main(String[] args) {
+            new Duke().run();
     }
 }

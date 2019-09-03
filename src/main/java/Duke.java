@@ -125,8 +125,8 @@ public class Duke {
                     //Kill off the word done. -1 to account for 0 based indexing
                     int completedIndex = newInput.getIndex();
 
-                    if (completedIndex >= taskList.sizeOf()) {
-                        System.out.println("Index is out of bounds!, choose no more than index " + taskList.sizeOf());
+                    if (completedIndex >= taskList.sizeOf() || taskList.sizeOf() == 0) {
+                        System.out.println("Index is out of bounds!");
                         break;
                     }
                     Task markDone = taskList.getTask(completedIndex);
@@ -139,8 +139,8 @@ public class Duke {
                 case "delete":
                     //Kill off the word delete. -1 to account for 0 based indexing
                     int deleteIndex = newInput.getIndex();
-                    if (deleteIndex > taskList.sizeOf()) {
-                        System.out.println("Index is out of bounds!, choose no more than index " + taskList.sizeOf());
+                    if (deleteIndex > taskList.sizeOf() || taskList.sizeOf() == 0) {
+                        System.out.println("Index is out of bounds!");
                         break;
                     }
                     Task markDelete = taskList.getTask(deleteIndex);
@@ -152,7 +152,7 @@ public class Duke {
 
                 case "find":
                     inputTask = newInput.removeWord("find ");
-                    if (inputTask.equals("")) {
+                    if (inputTask.equals("") || inputTask.equals(" ")) {
                         System.out.println("☹ OOPS!!! You cant find an empty task!");
                         break;
                     }

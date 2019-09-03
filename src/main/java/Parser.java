@@ -27,7 +27,8 @@ public class Parser {
     }
 
     public String beforeBy() {
-        String[] tempStringList = this.command.split("/by", 2);
+        String tempString = this.command.split(" ", 2)[1];
+        String[] tempStringList = tempString.split("/by", 2);
         return tempStringList[0];
     }
     public String afterBy() {
@@ -36,7 +37,8 @@ public class Parser {
     }
 
     public String beforeAt() {
-        String[] tempStringList = this.command.split("/at", 2);
+        String tempString = this.command.split(" ", 2)[1];
+        String[] tempStringList = tempString.split("/at", 2);
         return tempStringList[0];
     }
     public String afterAt() {

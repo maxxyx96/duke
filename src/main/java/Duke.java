@@ -68,8 +68,7 @@ public class Duke {
                     }
 
                     //get the details before and after /at
-                    splitTask = inputTask.split("/at", 2);
-                    Task inputEvent = new Event(splitTask[0], splitTask[1]);
+                    Task inputEvent = new Event(newInput.beforeAt(), newInput.afterAt());
                     taskList.add(inputEvent);
                     System.out.println("Got it. I've added this task: \n" + inputEvent);
                     System.out.println("Now you have " + taskList.size() + " tasks in the list.");
@@ -92,8 +91,8 @@ public class Duke {
                     //get the details before and after /by
                     splitTask = inputTask.split(" /by ", 2);
                     try {
-                        Date dueDate = dateFormat.parse(splitTask[1]);
-                        Task inputDeadline = new Deadline(splitTask[0], dueDate);
+                        Date dueDate = dateFormat.parse(newInput.afterBy());
+                        Task inputDeadline = new Deadline(newInput.beforeBy(), dueDate);
                         taskList.add(inputDeadline);
                         System.out.println("Got it. I've added this task: \n" + inputDeadline);
                         System.out.println("Now you have " + taskList.size() + " tasks in the list.");

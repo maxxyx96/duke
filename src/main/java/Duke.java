@@ -8,8 +8,6 @@ public class Duke {
         //array of Tasks generation
         ArrayList<Task> taskList = new ArrayList<>();
         taskList = Storage.loadTask(taskList);
-        //Input device
-        Scanner newInput = new Scanner(System.in);
 
         //Tool to recognise date from string
         SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy HHmm");
@@ -25,18 +23,18 @@ public class Duke {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can i do for you?");
 
+        //Input device
+        Parser newInput = new Parser();
+
         //Input declaration
         String userText = "";
         String inputTask = "";
         String[] splitTask;
 
-        //Input declaration
-        userText = newInput.nextLine();
-
         //Get first keyword
-        String userCommand = userText.contains(" ") ? userText.split(" ")[0] : userText;
+        String userCommand = newInput.userCommand();
 
-        while (!userText.equals("bye")) {
+        while (!userCommand.equals("bye")) {
 
             //Switch will contain list, done, default will add to list.
             switch (userCommand) {
@@ -57,7 +55,7 @@ public class Duke {
 
                 case "event":
                     //Replace "event " with "" to get actual event
-                    inputTask = userText.replaceFirst("event", "");
+                    inputTask = newInput.removeFirstWord();
 
                     //Error Handling
                     if (inputTask.equals("")) {
@@ -80,7 +78,7 @@ public class Duke {
 
                 case "deadline":
                     //Replace "deadline " with "" to get actual deadline
-                    inputTask = userText.replaceFirst("deadline", "");
+                    inputTask = newInput.removeFirstWord();
                     //Error handling
                     if (inputTask.equals("")) {
                         System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -111,7 +109,7 @@ public class Duke {
 
                 case "todo":
                     //Replace "to do " with "" to get actual to do
-                    inputTask = userText.replaceFirst("todo", "");
+                    inputTask = newInput.removeFirstWord();
 
                     //Error handling
                     if (inputTask.equals("") || inputTask.equals(" ")) {
@@ -129,7 +127,7 @@ public class Duke {
 
                 case "done":
                     //Kill off the word done. -1 to account for 0 based indexing
-                    int completedIndex = -1 + Integer.parseInt(userText.replaceAll("[\\D]", ""));
+                    int completedIndex = newInput.getIndex();
                     //Stuff for done
                     Task markDone = taskList.get(completedIndex);
                     markDone.markAsDone();
@@ -140,15 +138,15 @@ public class Duke {
 
                 case "delete":
                     //Kill off the word delete. -1 to account for 0 based indexing
-                    int deleteIndex = Integer.parseInt(userText.replaceAll("[\\D]", "")) - 1;
+                    int deleteIndex = newInput.getIndex();
                     Task markDelete = taskList.get(deleteIndex);
                     System.out.println("Noted. I've removed this task: \n" + markDelete);
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
                     taskList.remove(deleteIndex);
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
                     Storage.saveTask(taskList);
                     break;
                 case "find":
-                    inputTask = userText.replaceFirst("find", "");
+                    inputTask = newInput.removeFirstWord();
                     if (inputTask.equals("")) {
                         System.out.println("☹ OOPS!!! You cant find an empty task!");
                         break;
@@ -180,10 +178,8 @@ public class Duke {
             }
 
             //Prepare for next input
-            userText = newInput.nextLine();
-
-            //Get first keyword
-            userCommand = userText.contains(" ") ? userText.split(" ")[0] : userText;
+            newInput = new Parser();
+            userCommand = newInput.userCommand();
         }
 
         //Bye

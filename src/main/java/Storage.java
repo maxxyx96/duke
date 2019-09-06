@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Storage {
 
-    protected static ArrayList<Task> log;
+    protected static ArrayList<Task> log = new ArrayList<>();
 
     //Task Loading
     public static ArrayList<Task> loadTask() {
@@ -19,6 +19,17 @@ public class Storage {
             //Creates a file if there is no file found
             System.out.println("No file, i Created a file for ya :D");
             File newLog = new File("./taskLog");
+            if (!newLog.exists()) {
+                try {
+                    newLog.createNewFile();
+                }
+                catch (IOException i) {
+                    System.out.println("IO Exception from creating file detected");
+                    i.printStackTrace();
+                }
+
+            }
+
         }
         catch (IOException i) {
             System.out.println("IO Exception from loadTask detected");

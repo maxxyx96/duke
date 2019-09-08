@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ *  Contains the task list and functions that involves the
+ *  manipulation of the taskList such as adding and deleting of tasks.
+ */
 public class TaskList {
 
     protected ArrayList<Task> taskList;

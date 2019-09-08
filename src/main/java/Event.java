@@ -1,3 +1,8 @@
+/**
+ * Represents the Specific Task - Event that users are able to input,
+ * with a <code>/at</code> separating between the task description and the
+ * details of the event, such as period and maybe location.
+ */
 public class Event extends Task {
 
     protected String at;

@@ -1,6 +1,9 @@
 import java.text.ParseException;
 import java.util.Scanner;
 
+/**
+ * Parser deals with making sense of the user command
+ */
 public class Parser {
 
     public Scanner scan = new Scanner(System.in);

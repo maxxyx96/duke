@@ -1,6 +1,10 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * Storage deals with loading tasks from the file, as well as saving
+ * tasks into the files.
+ */
 public class Storage {
 
     protected static ArrayList<Task> log = new ArrayList<>();

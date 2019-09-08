@@ -1,6 +1,10 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * Generic representation of Tasks in Duke, which the various
+ * subclasses will inherit from.
+ */
 public class Task implements Serializable {
 
     protected String description;

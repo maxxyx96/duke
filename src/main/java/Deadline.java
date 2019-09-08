@@ -1,6 +1,11 @@
 import java.util.*;
 import java.text.*;
 
+/**
+ * Represents the Specific Task - Deadline that users are able to input,
+ * with a <code>/by</code> separating between the task description and the
+ * date and time of the deadline
+ */
 public class Deadline extends Task {
 
     protected Date dueDate;

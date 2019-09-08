@@ -1,3 +1,7 @@
+/**
+ * Deals with various interactions Duke has with the users, such as
+ * welcome and goodbye.
+ */
 public class Ui {
 
     public static final void dukeWelcome() {

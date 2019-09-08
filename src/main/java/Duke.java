@@ -1,6 +1,9 @@
 import java.util.*;
 import java.text.*;
 
+/**
+ * This is the main class of Duke where the program will start running from
+ */
 public class Duke {
 
     private Ui ui;

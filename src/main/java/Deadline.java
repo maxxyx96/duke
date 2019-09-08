@@ -13,6 +13,12 @@ public class Deadline extends Task {
     //Formats date to something that is nice :D
     protected SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMMM yyyy, hh:mm a");
 
+    /**
+     * Method which creates a new deadline task from the user's input
+     *
+     * @param description desciption of the task stored
+     * @param dueDate due date which which will be formatted for better reading
+     */
     public Deadline(String description, Date dueDate) {
         super(description);
         this.dueDate = dueDate;
@@ -20,7 +26,12 @@ public class Deadline extends Task {
         by = simpleDateFormat.format(dueDate);
     }
 
-    //To include [D] whatever by whenever into the string
+    /**
+     * Overrides method toString to include the format of a deadline which has
+     * "[D]" and a parenthesis to denote the due date and time.
+     *
+     * @return Returns the String description
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";

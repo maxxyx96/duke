@@ -4,6 +4,9 @@
  */
 public class Ui {
 
+    /**
+     * Method that welcomes the user once
+     */
     public static final void dukeWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -17,6 +20,9 @@ public class Ui {
         System.out.println("What can i do for you?");
     }
 
+    /**
+     * Method that says goodbye to the user
+     */
     public static final void dukeGoodbye() {
         System.out.println("Bye. Hope to see you again soon!");
     }

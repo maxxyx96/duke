@@ -8,6 +8,11 @@ public class Duke {
 
     private Ui ui;
 
+    /**
+     * The method run is used to run most of duke's programs.
+     *
+     * @return None
+     */
     public void run() {
         //array of Tasks generation
         //ArrayList<Task> taskList = new ArrayList<>();
@@ -168,6 +173,11 @@ public class Duke {
         ui.dukeGoodbye();
     }
 
+    /**
+     * This is the main method which runs Duke
+     * @param args Unused.
+     * @return Nothing.
+     */
     public static void main(String[] args) {
             new Duke().run();
     }

@@ -9,7 +9,13 @@ public class Storage {
 
     protected static ArrayList<Task> log = new ArrayList<>();
 
-    //Task Loading
+    /**
+     * Method that loads the task list from a specific file path, and
+     * creates a new file at the path if no file exists (Captured by the
+     * FileNotFoundException exception)
+     *
+     * @return returns the loaded Task List.
+     */
     public static ArrayList<Task> loadTask() {
         try {
             FileInputStream fileIS = new FileInputStream("./taskLog");
@@ -47,6 +53,11 @@ public class Storage {
         return log;
     }
 
+    /**
+     * Method that saves the file into the specified file path.
+     *
+     * @param saveData task list that is to be saved into the file
+     */
     public static void saveTask(ArrayList<Task> saveData) {
         try {
             FileOutputStream fileOS = new FileOutputStream("./taskLog");

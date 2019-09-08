@@ -10,38 +10,77 @@ public class TaskList {
     public ArrayList<Task> searchList;
     protected int counter;
 
+    /**
+     * Method that creates the task list from either a new file
+     * or a file that contains existing tasks.
+     */
     public TaskList() {
         this.taskList = Storage.loadTask();
     }
 
+    /**
+     * Method that gets the task list
+     * @return returns the task list
+     */
     public ArrayList<Task> getTaskList() {
         return this.taskList;
     }
 
+    /**
+     * Method that adds the task into the task list
+     * @param task task that is to be added into task list
+     */
     public void addTask(Task task) {
         taskList.add(task);
     }
 
+    /**
+     * Method that marks the task specified in the index
+     * as done.
+     *
+     * @param index index of the task that is done
+     */
     public void doneTask(int index) {
         taskList.get(index).markAsDone();
     }
 
+    /**
+     * Method that removes the task at the specified index
+     * @param index index of the task to be removed
+     */
     public void delTask(int index) {
         taskList.remove(index);
     }
 
+    /**
+     * Method that gets the task at the specified index
+     * @param index index of the task to be obtained
+     * @return returns the task in the specified index
+     */
     public Task getTask(int index) {
         return taskList.get(index);
     }
 
+    /**
+     * Method that checks the size of the task list
+     * @return returns the size of the task list
+     */
     public int sizeOf() {
         return taskList.size();
     }
 
+    /**
+     * Method that checks if a task list is empty
+     *
+     * @return returns 1 if empty and 0 otherwise
+     */
     public boolean isEmpty() {
         return taskList.isEmpty();
     }
 
+    /**
+     * Prints out the numbered task list
+     */
     public void printTaskList() {
         counter = 1;
         for (Task currentTask : taskList) {
@@ -51,6 +90,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Prints out the tasks that contains the keyword inside of
+     * the task list.
+     *
+     * @param keyWord The keyword that is required to be found in the tasks
+     */
     public void searchList(String keyWord) {
         counter = 1;
         searchList = new ArrayList<Task>();

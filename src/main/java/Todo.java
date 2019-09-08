@@ -9,12 +9,22 @@ import java.io.Serializable;
  */
 public class Todo extends Task implements Serializable {
 
+    /**
+     * Method which creates a new to-do from the user input
+     *
+     * @param description description of the task
+     */
     public Todo(String description) {
         super(description);
 
     }
 
-    //To include [T] whatever into the string
+    /**
+     * Overrides method toString to include the format of a to-do which has
+     * "[T]"
+     *
+     * @return Returns the String description
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();

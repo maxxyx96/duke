@@ -9,48 +9,87 @@ public class Parser {
     public Scanner scan = new Scanner(System.in);
     private String command;
 
+    /**
+     * Creates a new parser which contains the user input
+     */
     public Parser() {
         this.command = scan.nextLine();
     }
 
+    /**
+     * Creates a new scan
+     */
     public void newScan() {
         this.command = scan.nextLine();
     }
 
+    /**
+     * Method that returns the first word of the user command
+     *
+     * @return first word of user command eg: <code>task, list</code>
+     */
     public String userCommand() {
         return this.command.contains(" ") ? this.command.split(" ")[0] : this.command;
     }
 
-    public String removeFirstWord() {
-            String[] tempStringList = this.command.split(" ", 2);
-            return tempStringList[1];
-    }
-
+    /**
+     * Method that removes the given word once in the specified string
+     *
+     * @param word string that is to have a particular word removed
+     * @return returns the rest of the string
+     */
     public String removeWord(String word) {
         String[] tempStringList = this.command.split(word);
         return tempStringList[1];
     }
 
-
+    /**
+     * Method that gets the index in commands such as delete and done.
+     * eg: gets the integer <code>6</code> from done 6
+     *
+     * @return returns the integer index
+     */
     public int getIndex() {
         return -1 + Integer.parseInt(this.command.replaceAll("[\\D]", ""));
     }
 
+    /**
+     * method that gets the task description for the deadline task
+     *
+     * @return returns the task description before the /by separator
+     */
     public String beforeBy() {
         String tempString = this.command.split(" ", 2)[1];
         String[] tempStringList = tempString.split("/by", 2);
         return tempStringList[0];
     }
+
+    /**
+     * Method that gets the deadline of the task in string format
+     *
+     * @return returns the string after the /by separator
+     */
     public String afterBy() {
         String[] tempStringList = this.command.split("/by", 2);
         return tempStringList[1];
     }
 
+    /**
+     * method that gets the task description for the event task
+     *
+     * @return returns the task description before the /at separator
+     */
     public String beforeAt() {
         String tempString = this.command.split(" ", 2)[1];
         String[] tempStringList = tempString.split("/at", 2);
         return tempStringList[0];
     }
+
+    /**
+     * Method that gets the details of the event task in string format
+     *
+     * @return returns the string after the /at separator
+     */
     public String afterAt() {
         String[] tempStringList = this.command.split("/at", 2);
         return tempStringList[1];

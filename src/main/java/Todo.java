@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Todo extends Task implements Serializable {
 
     /**
-     * Method which creates a new to-do from the user input
+     * Creates a new to-do from the user input
      *
      * @param description description of the task
      */

@@ -10,7 +10,7 @@ public class Storage {
     protected static ArrayList<Task> log = new ArrayList<>();
 
     /**
-     * Method that loads the task list from a specific file path, and
+     * Loads the task list from a specific file path, and
      * creates a new file at the path if no file exists (Captured by the
      * FileNotFoundException exception)
      *
@@ -54,7 +54,7 @@ public class Storage {
     }
 
     /**
-     * Method that saves the file into the specified file path.
+     * Saves the file into the specified file path.
      *
      * @param saveData task list that is to be saved into the file
      */

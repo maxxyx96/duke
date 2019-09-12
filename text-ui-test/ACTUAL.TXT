@@ -8,3 +8,6 @@ Hello from
 
 Hello! I'm Duke
 What can i do for you?
+Got it. I've added this task: 
+[D][✗]duke  (by: 01 January 2019, 10:10 AM)
+Now you have 1 tasks in the list.

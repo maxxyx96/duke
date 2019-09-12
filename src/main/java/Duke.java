@@ -2,14 +2,14 @@ import java.util.*;
 import java.text.*;
 
 /**
- * This is the main class of Duke where the program will start running from
+ * This is the main class of Duke
  */
 public class Duke {
 
     private Ui ui;
 
     /**
-     * The method run is used to run most of duke's programs.
+     * Duke's program gets run here.
      *
      * @return None
      */

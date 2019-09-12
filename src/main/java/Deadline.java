@@ -14,7 +14,7 @@ public class Deadline extends Task {
     protected SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMMM yyyy, hh:mm a");
 
     /**
-     * Method which creates a new deadline task from the user's input
+     * Creates a new deadline task from the user's input
      *
      * @param description desciption of the task stored
      * @param dueDate due date which which will be formatted for better reading

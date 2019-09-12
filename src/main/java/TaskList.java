@@ -11,7 +11,7 @@ public class TaskList {
     protected int counter;
 
     /**
-     * Method that creates the task list from either a new file
+     * Creates the task list from either a new file
      * or a file that contains existing tasks.
      */
     public TaskList() {
@@ -19,7 +19,7 @@ public class TaskList {
     }
 
     /**
-     * Method that gets the task list
+     * Gets the task list
      * @return returns the task list
      */
     public ArrayList<Task> getTaskList() {
@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     /**
-     * Method that adds the task into the task list
+     * Adds the task into the task list
      * @param task task that is to be added into task list
      */
     public void addTask(Task task) {
@@ -35,7 +35,7 @@ public class TaskList {
     }
 
     /**
-     * Method that marks the task specified in the index
+     * Marks the task specified in the index
      * as done.
      *
      * @param index index of the task that is done
@@ -53,7 +53,7 @@ public class TaskList {
     }
 
     /**
-     * Method that gets the task at the specified index
+     * Gets the task at the specified index
      * @param index index of the task to be obtained
      * @return returns the task in the specified index
      */
@@ -62,7 +62,7 @@ public class TaskList {
     }
 
     /**
-     * Method that checks the size of the task list
+     * Checks the size of the task list
      * @return returns the size of the task list
      */
     public int sizeOf() {
@@ -70,7 +70,7 @@ public class TaskList {
     }
 
     /**
-     * Method that checks if a task list is empty
+     * Checks if a task list is empty
      *
      * @return returns 1 if empty and 0 otherwise
      */

@@ -24,7 +24,7 @@ public class Parser {
     }
 
     /**
-     * Method that returns the first word of the user command
+     * Returns the first word of the user command
      *
      * @return first word of user command eg: <code>task, list</code>
      */
@@ -33,7 +33,7 @@ public class Parser {
     }
 
     /**
-     * Method that removes the given word once in the specified string
+     * Removes the given word once in the specified string
      *
      * @param word string that is to have a particular word removed
      * @return returns the rest of the string
@@ -44,7 +44,7 @@ public class Parser {
     }
 
     /**
-     * Method that gets the index in commands such as delete and done.
+     * Gets the index in commands such as delete and done.
      * eg: gets the integer <code>6</code> from done 6
      *
      * @return returns the integer index
@@ -54,7 +54,7 @@ public class Parser {
     }
 
     /**
-     * method that gets the task description for the deadline task
+     * Gets the task description for the deadline task
      *
      * @return returns the task description before the /by separator
      */
@@ -65,7 +65,7 @@ public class Parser {
     }
 
     /**
-     * Method that gets the deadline of the task in string format
+     * Gets the deadline of the task in string format
      *
      * @return returns the string after the /by separator
      */
@@ -75,7 +75,7 @@ public class Parser {
     }
 
     /**
-     * method that gets the task description for the event task
+     * Gets the task description for the event task
      *
      * @return returns the task description before the /at separator
      */
@@ -86,7 +86,7 @@ public class Parser {
     }
 
     /**
-     * Method that gets the details of the event task in string format
+     * Gets the details of the event task in string format
      *
      * @return returns the string after the /at separator
      */

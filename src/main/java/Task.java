@@ -11,7 +11,7 @@ public class Task implements Serializable {
     protected boolean isDone;
 
     /**
-     * Method that creates a task from user input
+     * Creates a task from user input
      *
      * @param description description of a task
      */
@@ -21,7 +21,7 @@ public class Task implements Serializable {
     }
 
     /**
-     * Method that gets the icon of the current status of the task.
+     * Gets the icon of the current status of the task.
      * Cross symbolises it being undone and tick symbolises it being done.
      *
      * @return returns the icon of the task

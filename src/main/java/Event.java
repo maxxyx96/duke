@@ -8,7 +8,7 @@ public class Event extends Task {
     protected String at;
 
     /**
-     * Method which creates a new event task from the user's input
+     * Creates a new event task from the user's input
      *
      * @param description description of the task stored
      * @param at description of the period of the event

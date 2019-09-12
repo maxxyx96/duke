@@ -45,7 +45,7 @@ public class TaskList {
     }
 
     /**
-     * Method that removes the task at the specified index
+     * Removes the task at the specified index
      * @param index index of the task to be removed
      */
     public void delTask(int index) {

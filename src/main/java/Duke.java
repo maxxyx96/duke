@@ -14,10 +14,9 @@ public class Duke {
      * @return None
      */
     public void run() {
-        //array of Tasks generation
-        //ArrayList<Task> taskList = new ArrayList<>();
+
         TaskList taskList = new TaskList();
-        //taskList = Storage.loadTask(taskList);
+
 
         //Tool to recognise date from string
         SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy HHmm");
@@ -25,24 +24,17 @@ public class Duke {
         ui = new Ui();
         ui.dukeWelcome();
 
-        //Input device
+        //Inputs
         Parser newInput = new Parser();
-
-        //Input declaration
-        String userText = "";
         String inputTask = "";
-        String[] splitTask;
 
         //Get first keyword
         String userCommand = newInput.userCommand();
 
         while (!userCommand.equals("bye")) {
 
-            //Switch will contain list, done, default will add to list.
             switch (userCommand) {
                 case "list":
-                    int number = 1;
-                    //Outputs the list if its non-empty
                     if(taskList.isEmpty()){
                         System.out.println("List currently has nothing");
                     }
@@ -52,7 +44,6 @@ public class Duke {
                     break;
 
                 case "event":
-                    //Replace "event " with "" to get actual event
                     inputTask = newInput.removeWord("event");
 
                     //Error Handling
@@ -65,7 +56,6 @@ public class Duke {
                         break;
                     }
 
-                    //get the details before and after /at
                     Task inputEvent = new Event(newInput.beforeAt(), newInput.afterAt());
                     taskList.addTask(inputEvent);
                     System.out.println("Got it. I've added this task: \n" + inputEvent);
@@ -74,20 +64,18 @@ public class Duke {
                     break;
 
                 case "deadline":
-                    //Replace "deadline " with "" to get actual deadline
                     inputTask = newInput.removeWord("deadline");
+
                     //Error handling
                     if (inputTask.equals("")) {
                         System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
                         break;
                     }
-                    if (inputTask.indexOf("/by") == -1) {
+                    if (!inputTask.contains("/by")) {
                         System.out.println("☹ OOPS!!! The due date must be specified with /by <due date>!");
                         break;
                     }
 
-                    //get the details before and after /by
-                    splitTask = inputTask.split(" /by ", 2);
                     try {
                         Date dueDate = dateFormat.parse(newInput.afterBy());
                         Task inputDeadline = new Deadline(newInput.beforeBy(), dueDate);
@@ -96,7 +84,6 @@ public class Duke {
                         System.out.println("Now you have " + taskList.sizeOf() + " tasks in the list.");
                         Storage.saveTask(taskList.getTaskList());
                     }
-                    //If user dont put the date properly or horhhhh
                     catch (ParseException e)
                     {
                         System.out.println("☹ Please format deadline with: DD/MM/YYYY HHMM, eg: 02/12/2019 1800");
@@ -105,7 +92,6 @@ public class Duke {
                     break;
 
                 case "todo":
-                    //Replace "to do " with "" to get actual to do
                     inputTask = newInput.removeWord("todo");
 
                     //Error handling
@@ -113,17 +99,16 @@ public class Duke {
                         System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
                         break;
                     }
-                    //Create new to do
+
                     Task inputTodo = new Todo(inputTask);
                     taskList.addTask(inputTodo);
-                    //Notify user
+
                     System.out.println("Got it. I've added this task: \n" + inputTodo);
                     System.out.println("Now you have " + taskList.sizeOf() + " tasks in the list.");
                     Storage.saveTask(taskList.getTaskList());
                     break;
 
                 case "done":
-                    //Kill off the word done. -1 to account for 0 based indexing
                     int completedIndex = newInput.getIndex();
 
                     if (completedIndex >= taskList.sizeOf() || taskList.sizeOf() == 0) {
@@ -138,7 +123,6 @@ public class Duke {
                     break;
 
                 case "delete":
-                    //Kill off the word delete. -1 to account for 0 based indexing
                     int deleteIndex = newInput.getIndex();
                     if (deleteIndex > taskList.sizeOf() || taskList.sizeOf() == 0) {
                         System.out.println("Index is out of bounds!");

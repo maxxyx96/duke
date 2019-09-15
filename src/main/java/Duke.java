@@ -21,6 +21,8 @@ public class Duke {
         SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy HHmm");
 
         ui = new Ui();
+        ui.dukeLogo();
+        ui.dukeLine();
         ui.dukeWelcome();
 
         //Inputs
@@ -147,11 +149,15 @@ public class Duke {
             }
 
             //Prepare for next input
+            ui.dukeLine();
+            ui.dukeWelcome();
             newInput = new Parser();
             userCommand = newInput.userCommand();
+            ui.dukeLine();
         }
 
         ui.dukeGoodbye();
+        ui.dukeLine();
     }
 
     /**

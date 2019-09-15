@@ -11,7 +11,6 @@ public class Duke {
     /**
      * Duke's program gets run here.
      *
-     * @return None
      */
     public void run() {
 
@@ -44,11 +43,10 @@ public class Duke {
                     break;
 
                 case "event":
-                    inputTask = newInput.removeWord("event");
-
-                    //Error Handling
-                    if (inputTask.equals("")) {
-                        System.out.println("☹ OOPS!!! The description of an event cannot be empty.");
+                    try {
+                        inputTask = newInput.removeWord("event");
+                    } catch (Exception e) {
+                        System.out.println("☹ OOPS!!! The description of an event cannot be empty!");
                         break;
                     }
                     if (inputTask.indexOf("/at") == -1) {
@@ -64,13 +62,13 @@ public class Duke {
                     break;
 
                 case "deadline":
-                    inputTask = newInput.removeWord("deadline");
-
-                    //Error handling
-                    if (inputTask.equals("")) {
-                        System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    try {
+                        inputTask = newInput.removeWord("deadline");
+                    } catch (Exception e) {
+                        System.out.println("☹ OOPS!!! The description of a deadline cannot be empty!");
                         break;
                     }
+
                     if (!inputTask.contains("/by")) {
                         System.out.println("☹ OOPS!!! The due date must be specified with /by <due date>!");
                         break;
@@ -92,11 +90,10 @@ public class Duke {
                     break;
 
                 case "todo":
-                    inputTask = newInput.removeWord("todo");
-
-                    //Error handling
-                    if (inputTask.equals("") || inputTask.equals(" ")) {
-                        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                    try {
+                        inputTask = newInput.removeWord("todo");
+                    } catch (Exception e) {
+                        System.out.println("☹ OOPS!!! The description of todo cannot be empty!");
                         break;
                     }
 
@@ -159,8 +156,8 @@ public class Duke {
 
     /**
      * This is the main method which runs Duke
+     *
      * @param args Unused.
-     * @return Nothing.
      */
     public static void main(String[] args) {
             new Duke().run();
